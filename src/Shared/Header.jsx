@@ -1,150 +1,107 @@
-import React from 'react'
-import { Disclosure, Menu } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-]
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+import React from "react";
+import { Link } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
+import { BiSupport } from "react-icons/bi";
+import { MdLocalOffer } from "react-icons/md";
+import Searchbar from "../Components/Searchbar";
 
 function Header() {
   return (
-    <Disclosure as="nav" className="bg-gray-800">
-      {({ open }) => (
-        <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="absolute -inset-0.5" />
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
-              </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
-                </div>
-                <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
-                  type="button"
-                  className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                >
-                  <span className="absolute -inset-1.5" />
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
-
-                <Menu as="div" className="relative ml-3">
-                  <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                    <span className="absolute -inset-1.5" />
-                    <span className="sr-only">Open user menu</span>
-                    <img
-                      className="h-8 w-8 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
-                  </Menu.Button>
-                  <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active ? 'bg-gray-100' : '',
-                            'block px-4 py-2 text-sm text-gray-700'
-                          )}
-                        >
-                          Your Profile
-                        </a>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active ? 'bg-gray-100' : '',
-                            'block px-4 py-2 text-sm text-gray-700'
-                          )}
-                        >
-                          Settings
-                        </a>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active ? 'bg-gray-100' : '',
-                            'block px-4 py-2 text-sm text-gray-700'
-                          )}
-                        >
-                          Sign out
-                        </a>
-                      )}
-                    </Menu.Item>
-                  </Menu.Items>
-                </Menu>
-              </div>
+    <header className="shadow-md fixed top-0 left-0 w-full bg-white z-50">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <div className="flex items-center">
+            <Link to="/" className="flex items-center">
+              <img
+                src="/src/assets/l_f_app.png"
+                alt="Food App Logo"
+                className="h-12 w-auto"
+              />
+            </Link>
+            <div className="ml-4 hidden md:flex items-center gap-1.5">
+              <button className="ml-4 text-gray-600 hover:text-orange-500 font-mediumb underline underline-offset-8">
+                Other
+              </button>
+              <span className="">
+                <img
+                  src="/src/assets/arrow_icon.png"
+                  alt="arrowicon"
+                  className="w-5 h-auto [filter:invert(48%)_sepia(99%)_saturate(2532%)_hue-rotate(1deg)_brightness(103%)_contrast(106%)]"
+                />{" "}
+              </span>
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pt-2 pb-3">
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
-                  )}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
-                </Disclosure.Button>
-              ))}
-            </div>
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
-  )
+          {/* Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link
+              to="/corporate"
+              className="flex items-center text-gray-700 hover:text-orange-500"
+            >
+              <span className="mr-2">Swiggy Corporate</span>
+            </Link>
+            <Link
+              to="/search"
+              className="flex items-center text-gray-700 hover:text-orange-500"
+            >
+              <span className="mr-2">Search</span>
+            </Link>
+            <Link
+              to="/offers"
+              className="flex items-center text-gray-700 hover:text-orange-500"
+            >
+              <MdLocalOffer className="mr-1" />
+              <span>Offers</span>
+              <span className="ml-1 mb-2 text-xs text-orange-500 font-semibold">
+                NEW
+              </span>
+            </Link>
+            <Link
+              to="/help"
+              className="flex items-center text-gray-700 hover:text-orange-500"
+            >
+              <BiSupport className="mr-1" />
+              <span>Help</span>
+            </Link>
+            <Link
+              to="/signin"
+              className="flex items-center text-gray-700 hover:text-orange-500"
+            >
+              <span>Sign In</span>
+            </Link>
+            <Link
+              to="/cart"
+              className="flex items-center text-gray-700 hover:text-orange-500"
+            >
+              <FaShoppingCart className="mr-1" />
+              <span>Cart</span>
+              <span className="ml-1 bg-orange-500 text-white text-xs rounded-full px-2">
+                0
+              </span>
+            </Link>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button className="md:hidden text-gray-700">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+  );
 }
 
-export default Header
+export default Header;
